@@ -1,0 +1,11 @@
+{"timestamp": "2026-09-21T05:00:03.174511+00:00", "token": "CG-EMAIL-bpXQyZyt_GM", "requester": "Agent B", "purpose": "email_delivery", "status": "AUTHORIZED", "category": "EMAIL"}
+{"timestamp": "2026-09-21T05:02:05.553083+00:00", "token": "CG-EMAIL-bpXQyZyt_GM", "requester": "Agent B", "purpose": "payment_processing", "status": "DENIED", "category": "EMAIL"}
+{"timestamp": "2026-09-21T05:12:14.583761+00:00", "token": "CG-EMAIL-vmGk9d0_oRI", "requester": "Agent B", "purpose": "email_delivery", "status": "AUTHORIZED", "session_id": "token-demo-auth", "category": "EMAIL"}
+{"timestamp": "2026-09-21T05:13:02.993139+00:00", "token": "CG-EMAIL-vmGk9d0_oRI", "requester": "Agent B", "purpose": "payment_processing", "status": "DENIED", "session_id": "token-demo-auth", "category": "EMAIL"}
+{"timestamp": "2026-09-21T05:15:15.528297+00:00", "token": "CG-EMAIL-vmGk9d0_oRI", "requester": "Agent B", "purpose": "email_delivery", "status": "DENIED", "session_id": "wrong-session", "category": "EMAIL"}
+{"timestamp": "2026-09-21T05:20:28.440871+00:00", "token": "CG-EMAIL-v3Wg2mmWR8c", "requester": "Agent B", "purpose": "email_delivery", "status": "AUTHORIZED", "session_id": "agent-demo-secure", "category": "EMAIL"}
+{"timestamp": "2026-09-21T05:25:28.690354+00:00", "token": "CG-EMAIL-YMF15ukjFOs", "requester": "Agent B", "purpose": "email_delivery", "status": "AUTHORIZED", "session_id": "agent-demo-secure", "category": "EMAIL"}
+{"timestamp": "2026-09-21T05:28:46.001522+00:00", "token": "CG-EMAIL-iHTDdYM5YVI", "requester": "Agent B", "purpose": "email_delivery", "status": "AUTHORIZED", "session_id": "agent-demo", "category": "EMAIL"}
+{"timestamp": "2026-09-21T05:32:22.619736+00:00", "token": "CG-PHONE-jZjg1cuYM5Q", "requester": "Agent B", "purpose": "phone_verification", "status": "AUTHORIZED", "session_id": "agent-demo", "category": "PHONE"}
+{"timestamp": "2026-09-21T07:26:30.897490+00:00", "token": "CG-EMAIL-_x1_MZFEnqc", "requester": "Agent B", "purpose": "email_delivery", "status": "AUTHORIZED", "session_id": "agent-demo", "category": "EMAIL"}
+{"timestamp": "2026-09-21T09:36:52.511072+00:00", "token": "CG-EMAIL-89Ft_0E02P0", "requester": "Agent B", "purpose": "email_delivery", "status": "AUTHORIZED", "session_id": "agent-demo", "category": "EMAIL"}

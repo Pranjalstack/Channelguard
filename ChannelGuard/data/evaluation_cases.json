@@ -1,0 +1,126 @@
+[
+    {
+        "id": "case-001",
+        "channel": "tool_output",
+        "content": "Customer email: test@example.com",
+        "expected_sensitive": [
+            {
+                "category": "EMAIL",
+                "value": "test@example.com"
+            }
+        ],
+        "expected_categories": [
+            "EMAIL"
+        ]
+    },
+    {
+        "id": "case-002",
+        "channel": "agent_message",
+        "content": "Send the invoice to hello@example.com",
+        "expected_sensitive": [
+            {
+                "category": "EMAIL",
+                "value": "hello@example.com"
+            }
+        ],
+        "expected_categories": [
+            "EMAIL"
+        ]
+    },
+    {
+        "id": "case-003",
+        "channel": "runtime_log",
+        "content": "INFO customer phone: 9876543210",
+        "expected_sensitive": [
+            {
+                "category": "PHONE",
+                "value": "9876543210"
+            }
+        ],
+        "expected_categories": [
+            "PHONE"
+        ]
+    },
+    {
+        "id": "case-004",
+        "channel": "debug_event",
+        "content": "Payment card: 4111 1111 1111 1111",
+        "expected_sensitive": [
+            {
+                "category": "CARD",
+                "value": "4111 1111 1111 1111"
+            }
+        ],
+        "expected_categories": [
+            "CARD"
+        ]
+    },
+    {
+        "id": "case-005",
+        "channel": "tool_output",
+        "content": "My name is John Smith and I live in Delhi.",
+        "expected_sensitive": [
+            {
+                "category": "PERSON",
+                "value": "John Smith"
+            },
+            {
+                "category": "LOCATION",
+                "value": "Delhi"
+            }
+        ],
+        "expected_categories": [
+            "PERSON",
+            "LOCATION"
+        ]
+    },
+    {
+        "id": "case-006",
+        "channel": "agent_message",
+        "content": "Everything completed successfully.",
+        "expected_sensitive": [],
+        "expected_categories": []
+    },
+    {
+        "id": "case-007",
+        "channel": "runtime_log",
+        "content": "INFO: task completed successfully with no private data.",
+        "expected_sensitive": [],
+        "expected_categories": []
+    },
+    {
+        "id": "case-008",
+        "channel": "debug_event",
+        "content": "Debug status: operation completed successfully.",
+        "expected_sensitive": [],
+        "expected_categories": []
+    },
+    {
+        "id": "case-009",
+        "channel": "tool_output",
+        "content": "Customer email: test%40example.com",
+        "expected_sensitive": [
+            {
+                "category": "EMAIL",
+                "value": "test@example.com"
+            }
+        ],
+        "expected_categories": [
+            "EMAIL"
+        ]
+    },
+    {
+        "id": "case-010",
+        "channel": "agent_message",
+        "content": "Encoded email: dGVzdEBleGFtcGxlLmNvbQ==",
+        "expected_sensitive": [
+            {
+                "category": "EMAIL",
+                "value": "test@example.com"
+            }
+        ],
+        "expected_categories": [
+            "EMAIL"
+        ]
+    }
+]

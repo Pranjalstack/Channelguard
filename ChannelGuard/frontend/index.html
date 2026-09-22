@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="theme-color" content="#070b10">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ChannelGuard</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css?v=6"
+    >
+</head>
+
+<body>
+
+    <!-- =====================================================
+         Header
+    ====================================================== -->
+
+    <header class="site-header">
+
+        <div class="brand">
+
+            <div class="brand-mark" aria-hidden="true">
+                🛡️
+            </div>
+
+            <div class="brand-copy">
+
+                <h1>ChannelGuard</h1>
+
+                <p>
+                    Runtime Internal-Channel Privacy Protection
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="status" aria-label="System status">
+
+            <span
+                class="dot"
+                aria-hidden="true"
+            ></span>
+
+            <span>System Online</span>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- =====================================================
+             Dashboard Overview
+        ====================================================== -->
+
+        <section
+            class="dashboard"
+            aria-label="Security overview"
+        >
+
+            <div class="card">
+
+                <div class="card-label">
+                    Total Events
+                </div>
+
+                <p id="totalEvents">0</p>
+
+                <div class="card-foot">
+                    Processed by runtime layer
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-label">
+                    Allowed
+                </div>
+
+                <p id="allowedEvents">0</p>
+
+                <div class="card-foot">
+                    Passed security policy
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-label">
+                    Redacted
+                </div>
+
+                <p id="redactedEvents">0</p>
+
+                <div class="card-foot">
+                    Sensitive data sanitized
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-label">
+                    Alerts
+                </div>
+
+                <p id="alertEvents">0</p>
+
+                <div class="card-foot">
+                    Security attention required
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             Runtime Security Flow
+        ====================================================== -->
+
+        <section class="flow-panel">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-kicker">
+                        ARCHITECTURE
+                    </div>
+
+                    <h2>Runtime Security Flow</h2>
+
+                    <p>
+                        Sensitive data is inspected before reaching
+                        the downstream component.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="flow">
+
+                <div class="flow-node">
+
+                    <span
+                        class="flow-icon"
+                        aria-hidden="true"
+                    >
+                        🤖
+                    </span>
+
+                    <strong>Agent A</strong>
+
+                    <small>
+                        Qwen 3.5 0.8B
+                    </small>
+
+                </div>
+
+
+                <div
+                    class="flow-arrow"
+                    aria-hidden="true"
+                >
+                    →
+                </div>
+
+
+                <div class="flow-node guard-node">
+
+                    <span
+                        class="flow-icon"
+                        aria-hidden="true"
+                    >
+                        🛡️
+                    </span>
+
+                    <strong>ChannelGuard</strong>
+
+                    <small>
+                        Detect · Policy · Sanitize
+                    </small>
+
+                </div>
+
+
+                <div
+                    class="flow-arrow"
+                    aria-hidden="true"
+                >
+                    →
+                </div>
+
+
+                <div class="flow-node">
+
+                    <span
+                        class="flow-icon"
+                        aria-hidden="true"
+                    >
+                        🤖
+                    </span>
+
+                    <strong>Agent B</strong>
+
+                    <small>
+                        Qwen 3.5 0.8B
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="flow-decisions">
+
+                <span class="decision allow">
+                    ALLOW
+                </span>
+
+                <span class="decision redact">
+                    REDACT
+                </span>
+
+                <span class="decision alert">
+                    ALERT
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             Secure Token Vault
+        ====================================================== -->
+
+        <section class="vault-panel">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-kicker">
+                        ACCESS CONTROL
+                    </div>
+
+                    <h2>Secure Token Vault</h2>
+
+                    <p>
+                        Sensitive values are kept behind
+                        short-lived secure references.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="secondary-button"
+                    id="refreshVaultButton"
+                    onclick="refreshVaultStatus()"
+                >
+                    Refresh Vault
+                </button>
+
+            </div>
+
+
+            <div class="vault-grid">
+
+                <div class="vault-stat">
+
+                    <span>Active Tokens</span>
+
+                    <strong id="activeTokens">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="vault-stat">
+
+                    <span>Token Lifetime</span>
+
+                    <strong id="tokenTTL">
+                        15 min
+                    </strong>
+
+                </div>
+
+
+                <div class="vault-stat">
+
+                    <span>Stored Categories</span>
+
+                    <strong id="vaultCategories">
+                        None
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             Scanner
+        ====================================================== -->
+
+        <section class="scanner">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-kicker">
+                        RUNTIME TESTING
+                    </div>
+
+                    <h2>Scan Internal Event</h2>
+
+                    <p>
+                        Test a message through the ChannelGuard
+                        runtime protection layer.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Channel -->
+
+            <div class="form-group">
+
+                <label for="channel">
+                    Channel
+                </label>
+
+                <select id="channel">
+
+                    <option value="agent_message">
+                        Agent-to-Agent Message
+                    </option>
+
+                    <option value="tool_output">
+                        Tool Output
+                    </option>
+
+                    <option value="runtime_log">
+                        Runtime Log
+                    </option>
+
+                    <option value="debug_event">
+                        Debug Event
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Session -->
+
+            <div class="form-group">
+
+                <label for="sessionId">
+                    Session ID
+                </label>
+
+                <input
+                    id="sessionId"
+                    type="text"
+                    value="default"
+                    placeholder="Enter session ID..."
+                >
+
+            </div>
+
+
+            <!-- Forwarding Mode -->
+
+            <div class="form-group">
+
+                <label for="forwardingMode">
+                    Sensitive Data Handling
+                </label>
+
+                <select
+                    id="forwardingMode"
+                    onchange="toggleSecureOptions()"
+                >
+
+                    <option value="redact">
+                        Redact Sensitive Data
+                    </option>
+
+                    <option value="tokenize">
+                        Secure Tokenization
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Secure Options -->
+
+            <div
+                id="secureOptions"
+                class="secure-options hidden"
+            >
+
+                <div class="secure-info">
+
+                    <div class="secure-info-icon" aria-hidden="true">
+                        🔐
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Secure Token Mode
+                        </strong>
+
+                        <span>
+                            Sensitive values are replaced with
+                            short-lived tokens for authorized
+                            downstream operations.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="requester">
+                        Intended Agent
+                    </label>
+
+                    <select id="requester">
+
+                        <option value="Agent B">
+                            Agent B
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="purpose">
+                        Intended Purpose
+                    </label>
+
+                    <select id="purpose">
+
+                        <option value="email_delivery">
+                            Email Delivery
+                        </option>
+
+                        <option value="phone_verification">
+                            Phone Verification
+                        </option>
+
+                        <option value="payment_processing">
+                            Payment Processing
+                        </option>
+
+                        <option value="identity_verification">
+                            Identity Verification
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- Event Content -->
+
+            <div class="form-group">
+
+                <label for="content">
+                    Event Content
+                </label>
+
+                <textarea
+                    id="content"
+                    placeholder="Enter an internal event here..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="button-row">
+
+                <button
+                    id="scanButton"
+                    onclick="scanEvent()"
+                >
+                    Scan Event
+                </button>
+
+
+                <button
+                    id="replayButton"
+                    class="secondary-button"
+                    onclick="replaySample()"
+                >
+                    Replay Sample Trace
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             Scan Result
+        ====================================================== -->
+
+        <section class="result">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-kicker">
+                        DECISION OUTPUT
+                    </div>
+
+                    <h2>Scan Result</h2>
+
+                    <p id="resultSummary">
+                        No event scanned yet.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="resultBox"
+                class="result-box"
+            >
+
+                <div class="empty-state">
+
+                    <span aria-hidden="true">
+                        🛡️
+                    </span>
+
+                    <p>
+                        No event scanned yet.
+                    </p>
+
+                    <small>
+                        Run a scan to view the security decision.
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             Secure Token Details
+        ====================================================== -->
+
+        <section
+            id="tokenSection"
+            class="token-section hidden"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-kicker">
+                        TOKENIZATION
+                    </div>
+
+                    <h2>Secure Token Details</h2>
+
+                    <p>
+                        The original sensitive value remains
+                        inside ChannelGuard's secure vault.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div id="tokenDetails"></div>
+
+        </section>
+
+
+        <!-- =====================================================
+             Detection Details
+        ====================================================== -->
+
+        <section
+            id="detailsSection"
+            class="details-section hidden"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-kicker">
+                        ANALYSIS
+                    </div>
+
+                    <h2>Detection Details</h2>
+
+                    <p>
+                        Detection signals and normalization
+                        information for the scanned event.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div id="detectionDetails"></div>
+
+        </section>
+
+    </main>
+
+
+    <script
+        src="/static/script.js?v=6"
+    ></script>
+
+</body>
+
+</html>
